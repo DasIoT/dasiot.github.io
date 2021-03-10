@@ -14,10 +14,11 @@ export default function Home() {
               <h1 className="title-font sm:text-4xl text-3xl mb-4 font-light text-gray-900">
                 DasIoT
               </h1>
-              <p className="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+              <p className="mb-8 leading-relaxed">DasIoT is a all in one IoT platform that help you to manage construction site with custom IoT device integration.</p>
             </div>
             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-              <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" />
+              {/* <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" /> */}
+              <img className="object-cover object-center rounded" alt="hero" src="arch.png" />
             </div>
           </div>
         </section>
