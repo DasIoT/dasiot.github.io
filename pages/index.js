@@ -6,7 +6,7 @@ export default function Home() {
     <div className="px-14 divide-y divide-gray-300">
       <Header />
       <main>
-        <h1 className="title-font sm:text-4xl text-3xl pt-8 mb-4 font-medium text-gray-900" id="product">Product</h1>
+        <h1 id="product" className="title-font sm:text-4xl text-3xl pt-8 mb-4 font-medium text-gray-900">Product</h1>
         <section className="text-gray-600 body-font">
           <div className="container mx-auto flex px-5 py-6 md:flex-row flex-col items-center">
             <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
@@ -22,7 +22,7 @@ export default function Home() {
           </div>
         </section>
 
-        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" id="product">Contact</h1>
+        <h1 id="contact" className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Contact</h1>
         <section className="text-gray-600 body-font relative mb-8">
           <div className="absolute inset-0 bg-gray-300">
             <iframe width="100%" height="100%" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" scrolling="no" style={{ filter: `grayscale(0.5) contrast(1.2) opacity(0.4)`, pointerEvents: 'none' }} src="https://maps.google.com/maps?ll=25.069082, 121.535371&amp;width=100%25&amp;height=600&amp;hl=en&amp;q=10452%E5%8F%B0%E5%8C%97%E5%B8%82%E4%B8%AD%E5%B1%B1%E5%8D%80%E7%8E%89%E9%96%80%E8%A1%971%E8%99%9F+(DasIot)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
