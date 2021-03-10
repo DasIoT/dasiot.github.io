@@ -15,6 +15,7 @@ export default function Home() {
                 DasIoT
               </h1>
               <p className="mb-8 leading-relaxed">DasIoT is a all in one IoT platform that help you to manage construction site with custom IoT device integration.</p>
+              <span><a className="underline hover:text-gray-900" href="#contact">Contact us</a> for more detail.</span>
             </div>
             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
               {/* <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600" /> */}
