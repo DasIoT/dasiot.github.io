@@ -1,11 +1,10 @@
 import React from 'react'
-import Image from 'next/image'
 
 export default function Footer(props) {
   return <footer className={"text-gray-600 body-font " + props.className}>
     <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
       <a href="#" className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <Image
+        <img
           height="64px"
           width="64px"
           src="/logo.png"
