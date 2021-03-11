@@ -10,7 +10,7 @@ export default function Header() {
           src="/logo.png"
         />
       </a>
-      <span className="ml-3 text-xl italic"> – Smart Construction With Ease </span>
+      <span className="ml-3 text-xl italic"> – All In One Smart Construction With Ease </span>
       <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a className="mr-5 hover:text-gray-900" href="#">Home</a>
         <a className="mr-5 hover:text-gray-900" href="#product">Product</a>

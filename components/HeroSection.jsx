@@ -8,7 +8,7 @@ export default function HeroSection() {
                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-light text-gray-900">
                     DasIoT
       </h1>
-                <p className="mb-8 leading-relaxed">DasIoT is a all in one IoT platform that help you to manage construction site with custom IoT device integration.</p>
+                <p className="mb-8 leading-relaxed">DasIoT is an all in one IoT platform that helps you to manage construction sites with custom IoT devices integration.</p>
                 <span><a className="underline hover:text-gray-900" href="#contact">Contact us</a> for more detail.</span>
             </div>
             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

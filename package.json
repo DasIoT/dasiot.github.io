@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "publish": "npm run build && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "autoprefixer": "^10.0.4",
