@@ -1,8 +1,9 @@
-import Head from 'next/head'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import HeroSection from '../components/HeroSection'
-import ContactSection from '../components/ContactSection'
+import Head from "next/head";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import HeroSection from "../components/HeroSection";
+import ContactSection from "../components/ContactSection";
+import Map from "../components/Map";
 
 export default function Home() {
   return (
@@ -12,14 +13,24 @@ export default function Home() {
       </Head>
       <Header />
       <main>
-        <h1 id="product" className="title-font sm:text-4xl text-3xl pt-8 mb-4 font-medium text-gray-900">Product</h1>
-        <HeroSection/>
+        <h1
+          id="product"
+          className="title-font sm:text-4xl text-3xl pt-8 mb-4 font-medium text-gray-900"
+        >
+          Product
+        </h1>
+        <HeroSection />
+        <Map />
 
-        <h1 id="contact" className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Contact</h1>
-        <ContactSection/>
-        
+        <h1
+          id="contact"
+          className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
+        >
+          Contact
+        </h1>
+        <ContactSection />
       </main>
       <Footer />
     </div>
-  )
+  );
 }
