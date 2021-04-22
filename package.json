@@ -9,6 +9,7 @@
     "publish": "npm run build && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
+    "@xeokit/xeokit-sdk": "^1.8.0",
     "autoprefixer": "^10.0.4",
     "formik": "^2.2.6",
     "next": "latest",
