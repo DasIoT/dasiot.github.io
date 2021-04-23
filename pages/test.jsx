@@ -12,7 +12,7 @@ const load = async () => {
   const [
     Viewer,
     XKTLoaderPlugin,
-    NavCubePlugin,
+    ImagePlane,
     TreeViewPlugin,
     Mesh,
     VBOGeometry,
@@ -24,9 +24,9 @@ const load = async () => {
     import(
       "@xeokit/xeokit-sdk/src/plugins/XKTLoaderPlugin/XKTLoaderPlugin.js"
     ).then((m) => m.XKTLoaderPlugin),
-    import(
-      "@xeokit/xeokit-sdk/src/plugins/NavCubePlugin/NavCubePlugin.js"
-    ).then((m) => m.NavCubePlugin),
+    import("@xeokit/xeokit-sdk/src/viewer/scene/ImagePlane/ImagePlane.js").then(
+      (m) => m.ImagePlane
+    ),
     import(
       "@xeokit/xeokit-sdk/src/plugins/TreeViewPlugin/TreeViewPlugin.js"
     ).then((m) => m.TreeViewPlugin),
@@ -48,20 +48,35 @@ const load = async () => {
   ]);
   const viewer = new Viewer({
     canvasId: "myCanvas",
-    // transparent: true,
+    transparent: true,
   });
   // viewer.cameraControl.doublePickFlyTo = true;
-  // viewer.cameraControl.navMode = "planView"; // smooth
-  viewer.cameraControl.followPointer = true;
+  // viewer.cameraControl.navMode = "planView";
+  viewer.cameraControl.navMode = "firstperson";
+  viewer.cameraControl.followPointer = false;
+  viewer.cameraControl.constrainVertical = false;
+  viewer.cameraControl.dragRotationRate = 90;
+  viewer.cameraControl.panInertia = 0.2;
+  viewer.cameraControl.smartPivot = true;
 
   const cameraFlight = viewer.cameraFlight;
   cameraFlight.duration = 0.5;
   // cameraFlight.fitFOV = 25;
 
+  // viewer.camera.eye = [
+  //   11.815765380859375,
+  //   31.031147003173828,
+  //   -11.536711692810059,
+  // ];
+  // viewer.camera.look = [
+  //   11.815765380859375,
+  //   -6.36965799331665,
+  //   -11.536711692810059,
+  // ];
+  // viewer.camera.up = [0, 0, 1];
   viewer.camera.eye = [10, 120, -50]; // 遠近，下上，旋轉近遠
   viewer.camera.look = [-60, -3, 0];
   viewer.camera.up = [0, 1, 0];
-  viewer.camera.zoom(-10);
   viewer.camera.gimbalLock = true;
 
   viewer.scene.xrayMaterial.fillAlpha = 0.1;
@@ -81,6 +96,8 @@ const load = async () => {
       "<div class='annotation-label' style='background-color: {{labelBGColor}};'>\
         <div class='annotation-title'>{{title}}</div>\
         <div class='annotation-desc'>{{description}}</div>\
+        <div class='annotation-desc'>🔋 🟩🟩🟩🟥🟥 </div>\
+        <div class='annotation-desc'> Status: {{status}} </div>\
         </div>",
 
     values: {
@@ -89,6 +106,7 @@ const load = async () => {
       glyph: "X",
       title: "Untitled",
       description: "No description",
+      status: "Normal",
     },
   });
   annotations.on("markerClicked", (annotation) => {
@@ -103,23 +121,36 @@ const load = async () => {
     src: "/assets/models/schependomlaan.xkt",
     metaModelSrc: "/assets/metaModels/schependomlaan.json", // Creates a MetaObject instances in scene.metaScene.metaObjects
     // position: [0, 0, 0],
-    position: [x, y, z],
+    position: [x, y + 0.5, z],
+    edges: true,
   });
   model.on("loaded", () => {
     annotations.createAnnotation({
-      id: "myAnnotation1",
-      // entity: viewer.scene.objects["2O2Fr$t4X7Zf8NOew3FLOH"],
-      // worldPos: [2.039, 4.418, 17.965],
+      id: "a1",
       worldPos: [x + 0.1, y, z],
-      // occludable: true,
       markerShown: true,
-      labelShown: true,
+      labelShown: false,
 
       values: {
         glyph: "W1",
         title: "Ike Watterson",
         description: "Happy worker bee",
         markerBGColor: "yellow",
+        status: "Normal",
+      },
+    });
+    annotations.createAnnotation({
+      id: "a2",
+      worldPos: [x + 12, y, z - 6],
+      markerShown: true,
+      labelShown: true,
+
+      values: {
+        glyph: "S2",
+        title: "Spider man",
+        description: "your friendly neighbourhood",
+        markerBGColor: "red",
+        status: "Heatstroke 🥵",
       },
     });
 
@@ -130,27 +161,21 @@ const load = async () => {
       viewer.scene.setObjectsVisible(metaObject.getObjectIDsInSubtree(), true);
     }
     viewer.cameraFlight.flyTo(model);
-    // const treeView = new TreeViewPlugin(viewer, {
-    //   containerElement: document.getElementById("treeViewContainer"),
-    //   autoExpandDepth: 3, // Initially expand tree three nodes deep
-    // });
+    const treeView = new TreeViewPlugin(viewer, {
+      containerElement: document.getElementById("treeViewContainer"),
+      autoExpandDepth: 3, // Initially expand tree three nodes deep
+    });
   });
 
-  new Mesh(viewer.scene, {
-    geometry: new VBOGeometry(
-      viewer.scene,
-      buildGridGeometry({
-        size: 300,
-        divisions: 60,
-      })
-    ),
-    material: new PhongMaterial(viewer.scene, {
-      color: [0.0, 0.0, 0.0],
-      emissive: [0.4, 0.4, 0.4],
-    }),
-    // position: [0, 0, 0],
-    position: [x, y, z],
+  new ImagePlane(viewer.scene, {
+    src: "/assets/map.png",
+    size: 190,
+    position: [x + 13, y, z - 10],
+    rotation: [0, -20, 0],
+    opacity: 1.0,
     collidable: false,
+    gridVisible: true,
+    pickable: true,
   });
 };
 
@@ -178,7 +203,10 @@ export default function Home() {
           Web Powered Control Panel
         </h1>
         <div>
-          <div id="treeViewContainer" className="absolute"></div>
+          <div
+            id="treeViewContainer"
+            className="absolute bg-gray-50 w-1/3 bg-opacity-70 rounded-sm"
+          ></div>
           <canvas id="myCanvas" className="w-full h-96" />
         </div>
         <h1
